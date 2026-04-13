@@ -1,0 +1,41 @@
+services:
+  # MySQL 8
+  mysql:
+    image: mysql:8.3
+    container_name: mysql-technical-test-webapp-jsp-essential
+    restart: always
+    environment:
+      LANG: es_MX.UTF-8
+      LANGUAGE: es_MX:es
+      TZ: America/Mexico_City
+      MYSQL_ROOT_PASSWORD: p4ssw0rd$123
+      MYSQL_DATABASE: technical-test-webapp-jsp-essential
+      MYSQL_USER: webapp
+      MYSQL_PASSWORD: p4ssw0rd
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "3306:3306"
+  # Apache Tomcat 10
+  tomcat:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        COMPILE_VERSION: ${COMPILE_VERSION}
+        APPLICATION_CONTEXT: ${APPLICATION_CONTEXT}
+    image: technical-test-webapp-jsp-essential:${COMPILE_VERSION}
+    container_name: tomcat-technical-test-webapp-jsp-essential
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      LANG: es_MX.UTF-8
+      LANGUAGE: es_MX:es
+      TZ: America/Mexico_City
+      JAVA_OPTS: "-Duser.language=es -Duser.country=MX -Duser.region=MX -Dfile.encoding=UTF-8 -Duser.timezone=America/Mexico_City"

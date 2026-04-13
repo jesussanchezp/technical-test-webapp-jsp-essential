@@ -1,0 +1,27 @@
+Prueba Técnica de Habilidades en Java.
+
+El objetivo principal de esta prueba es la creación de un CRUD básico con Java, aplicando todas sus habilidades y conocimientos del entrevistado.
+
+Esta es una aplicación web desplegada en un servidor Tomcat y una Base de Datos MySQL.
+
+Para mayor practicidad se implemento Docker para la Base de Datos y el Despliegue de la Aplicación, ya esta configurada desde inicio.
+
+Este es el Listado de Tecnologico de la Prueba.
+
+- Java 21
+- Apache Maven
+- Jakarta EE 11
+    - JSTL
+    - CDI
+    - JSP
+- MySQL 8
+- Bootstrap 5.3
+- JQuery 4.0
+
+Comandos Principales:
+
+- mvn clean install -U (Opcional)
+- docker compose -f ./docker/docker-compose.yml -p docker up -d (Construye la Imagen e Inicia el Contenedor)
+- docker compose -f ./docker/docker-compose.yml -p docker stop (Detiene los Contenedores)
+- docker compose -f ./docker/docker-compose.yml -p docker down --rmi local --volumes (Elimina los Contenedores, Imagenes, Volumenes)
+
