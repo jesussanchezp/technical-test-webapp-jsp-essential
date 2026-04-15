@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jesussanchezp.technicaltests.jsp.technicaltestwebappjspessential.configs;
+package com.jesussanchezp.technicaltests.jsp.technicaltestwebappjspessential.application.configs;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Initialized;
@@ -29,19 +29,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ApplicationScoped
-public class DatabaseInitializer {
+public class DatabaseRunScript {
 
-  private static final Logger logger = LoggerFactory.getLogger(DatabaseInitializer.class);
+  private static final Logger logger = LoggerFactory.getLogger(DatabaseRunScript.class);
 
   @Inject private DataSource dataSource;
 
   public void init(@Observes @Initialized(ApplicationScoped.class) Object initEvent) {
     logger.info("Inicializando base de datos…");
-    try (Connection conn = dataSource.getConnection()) {
-      conn.setAutoCommit(false);
-      this.runScript(conn, "database/schema.sql");
-      this.runScript(conn, "database/data.sql");
-      conn.commit();
+    try (Connection connection = dataSource.getConnection()) {
+      connection.setAutoCommit(false);
+      this.runScript(connection, "database/schema.sql");
+      this.runScript(connection, "database/data.sql");
+      connection.commit();
       logger.info("Base de datos inicializada correctamente.");
     } catch (Exception ex) {
       logger.error("Error inicializando la base de datos: {}", ex.getMessage(), ex);
@@ -49,7 +49,7 @@ public class DatabaseInitializer {
     }
   }
 
-  private void runScript(Connection conn, String path) throws Exception {
+  private void runScript(Connection connection, String path) throws Exception {
     logger.info("Ejecutando script.jsp: {}", path);
     try (BufferedReader reader =
         new BufferedReader(
@@ -63,7 +63,7 @@ public class DatabaseInitializer {
       for (String statement : sql.split(";")) {
         String trimmed = statement.trim();
         if (!trimmed.isEmpty()) {
-          try (Statement st = conn.createStatement()) {
+          try (Statement st = connection.createStatement()) {
             st.execute(trimmed);
           }
         }

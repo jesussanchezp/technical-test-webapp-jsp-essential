@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jesussanchezp.technicaltests.jsp.technicaltestwebappjspessential.configs;
+package com.jesussanchezp.technicaltests.jsp.technicaltestwebappjspessential.application.configs;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
@@ -23,7 +23,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 @ApplicationScoped
-public class DatasourceProducer {
+public class DatabaseDataSource {
 
   @Produces
   @ApplicationScoped

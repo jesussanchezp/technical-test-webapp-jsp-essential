@@ -1,4 +1,4 @@
-FROM tomcat:10.1.53-jre21-temurin-noble
+FROM tomcat:10.1.54-jre21-temurin-noble
 
 ARG COMPILE_VERSION=1.0.0
 ARG APPLICATION_CONTEXT=technical-test-webapp-jsp-essential

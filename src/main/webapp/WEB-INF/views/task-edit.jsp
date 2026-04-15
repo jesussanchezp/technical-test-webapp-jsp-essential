@@ -34,7 +34,7 @@
                                             <label for="formTaskDescription" class="form-label"><strong>Descripción</strong></label>
                                             <input id="formTaskDescription" name="description" type="text" class="form-control" placeholder="Task 01 - Description" value="${task.description}" required>
                                             <div class="invalid-feedback">
-                                              El título es obligatorio.
+                                              La Descripción es obligatoria.
                                             </div>
                                         </div>
                                         <div class="mb-3">

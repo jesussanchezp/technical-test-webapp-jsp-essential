@@ -89,9 +89,11 @@ public class TaskRepositoryImpl implements TaskRepository {
     try (Connection connection = this.dataSource.getConnection();
         PreparedStatement preparedStatement =
             connection.prepareStatement("INSERT INTO TASKS (title, description) VALUES (?, ?)")) {
+      connection.setAutoCommit(false);
       preparedStatement.setString(1, taskModel.getTitle());
       preparedStatement.setString(2, taskModel.getDescription());
       preparedStatement.executeUpdate();
+      connection.commit();
     } catch (Exception ex) {
       logger.error("Error en la ejecución del query: {}", ex.getMessage(), ex);
       throw new RuntimeException("Error en la ejecución del query", ex);
@@ -104,12 +106,14 @@ public class TaskRepositoryImpl implements TaskRepository {
         PreparedStatement preparedStatement =
             connection.prepareStatement(
                 "UPDATE TASKS SET title=?, description=?, status=? WHERE id=?")) {
+      connection.setAutoCommit(false);
       preparedStatement.setString(1, taskModel.getTitle());
       preparedStatement.setString(2, taskModel.getDescription());
       preparedStatement.setString(3, taskModel.getStatus());
       preparedStatement.setLong(4, taskModel.getId());
       logger.info("Task to Update: {}", taskModel);
       preparedStatement.executeUpdate();
+      connection.commit();
     } catch (Exception ex) {
       logger.error("Error en la ejecución del query: {}", ex.getMessage(), ex);
       throw new RuntimeException("Error en la ejecución del query", ex);
@@ -121,8 +125,10 @@ public class TaskRepositoryImpl implements TaskRepository {
     try (Connection connection = this.dataSource.getConnection();
         PreparedStatement preparedStatement =
             connection.prepareStatement("DELETE FROM TASKS WHERE id=?")) {
+      connection.setAutoCommit(false);
       preparedStatement.setLong(1, id);
       preparedStatement.executeUpdate();
+      connection.commit();
     } catch (Exception ex) {
       logger.error("Error en la ejecución del query: {}", ex.getMessage(), ex);
       throw new RuntimeException("Error en la ejecución del query", ex);
