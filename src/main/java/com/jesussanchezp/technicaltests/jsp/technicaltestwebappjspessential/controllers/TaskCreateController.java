@@ -1,5 +1,5 @@
 /*
- * Copyright 2026 Jesús Guillermo Sánchez Peralta. <https://jesussanchezp.com>
+ * Copyright (c) 2026 Jesús Guillermo Sánchez Peralta <https://jesussanchezp.com>. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,13 +26,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @WebServlet("/tasks/create")
 public class TaskCreateController extends HttpServlet {
 
-  private static final Logger logger = LoggerFactory.getLogger(TaskCreateController.class);
-
+  @Inject private Logger logger;
   @Inject private TaskService taskService;
 
   @Override

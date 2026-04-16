@@ -1,5 +1,5 @@
 /*
- * Copyright 2026 Jesús Guillermo Sánchez Peralta. <https://jesussanchezp.com>
+ * Copyright (c) 2026 Jesús Guillermo Sánchez Peralta <https://jesussanchezp.com>. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,14 +23,18 @@ import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import java.util.List;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 public class TaskServiceImpl implements TaskService {
 
-  private static final Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
+  private final Logger logger;
+  private final TaskRepository taskRepository;
 
-  @Inject private TaskRepository taskRepository;
+  @Inject
+  public TaskServiceImpl(Logger logger, TaskRepository taskRepository) {
+    this.logger = logger;
+    this.taskRepository = taskRepository;
+  }
 
   @Override
   public List<TaskModel> findAll() {

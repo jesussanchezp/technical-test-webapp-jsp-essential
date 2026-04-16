@@ -1,5 +1,5 @@
 /*
- * Copyright 2026 Jesús Guillermo Sánchez Peralta. <https://jesussanchezp.com>
+ * Copyright (c) 2026 Jesús Guillermo Sánchez Peralta <https://jesussanchezp.com>. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,14 +26,18 @@ import java.sql.Connection;
 import java.sql.Statement;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @ApplicationScoped
-public class DatabaseRunScript {
+public class InitialScriptExecution {
 
-  private static final Logger logger = LoggerFactory.getLogger(DatabaseRunScript.class);
+  private final Logger logger;
+  private final DataSource dataSource;
 
-  @Inject private DataSource dataSource;
+  @Inject
+  public InitialScriptExecution(Logger logger, DataSource dataSource) {
+    this.logger = logger;
+    this.dataSource = dataSource;
+  }
 
   public void init(@Observes @Initialized(ApplicationScoped.class) Object initEvent) {
     logger.info("Inicializando base de datos…");
@@ -59,7 +63,12 @@ public class DatabaseRunScript {
       while ((line = reader.readLine()) != null) {
         sb.append(line).append("\n");
       }
-      String sql = cleanSql(sb.toString());
+      String sql =
+          sb.toString()
+              .replaceAll("/\\*[\\s\\S]*?\\*/", " ")
+              .replaceAll("--.*?\\n", " ")
+              .replaceAll("#.*?\\n", " ")
+              .replaceAll("\\n+", "\n");
       for (String statement : sql.split(";")) {
         String trimmed = statement.trim();
         if (!trimmed.isEmpty()) {
@@ -69,13 +78,5 @@ public class DatabaseRunScript {
         }
       }
     }
-  }
-
-  private String cleanSql(String sql) {
-    sql = sql.replaceAll("/\\*[\\s\\S]*?\\*/", " ");
-    sql = sql.replaceAll("--.*?\\n", " ");
-    sql = sql.replaceAll("#.*?\\n", " ");
-    sql = sql.replaceAll("\\n+", "\n");
-    return sql;
   }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2026 Jesús Guillermo Sánchez Peralta. <https://jesussanchezp.com>
+ * Copyright (c) 2026 Jesús Guillermo Sánchez Peralta <https://jesussanchezp.com>. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,14 +29,18 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 public class TaskRepositoryImpl implements TaskRepository {
 
-  private static final Logger logger = LoggerFactory.getLogger(TaskRepositoryImpl.class);
+  private final Logger logger;
+  private final DataSource dataSource;
 
-  @Inject private DataSource dataSource;
+  @Inject
+  public TaskRepositoryImpl(Logger logger, DataSource dataSource) {
+    this.logger = logger;
+    this.dataSource = dataSource;
+  }
 
   @Override
   public List<TaskModel> findAll() {

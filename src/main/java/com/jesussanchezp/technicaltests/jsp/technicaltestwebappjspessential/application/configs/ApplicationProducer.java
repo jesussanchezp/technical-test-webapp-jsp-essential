@@ -1,5 +1,5 @@
 /*
- * Copyright 2026 Jesús Guillermo Sánchez Peralta. <https://jesussanchezp.com>
+ * Copyright (c) 2026 Jesús Guillermo Sánchez Peralta <https://jesussanchezp.com>. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,23 +16,23 @@
 
 package com.jesussanchezp.technicaltests.jsp.technicaltestwebappjspessential.application.configs;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.annotation.Resource;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import jakarta.enterprise.inject.spi.InjectionPoint;
 import javax.sql.DataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@ApplicationScoped
-public class DatabaseDataSource {
+@Dependent
+public class ApplicationProducer {
 
   @Produces
-  @ApplicationScoped
-  public DataSource produceDataSource() {
-    try {
-      return (DataSource)
-          new InitialContext().lookup("java:comp/env/jdbc/technical-test-webapp-jsp-essential");
-    } catch (NamingException ex) {
-      throw new RuntimeException("No se pudo obtener el DataSource JNDI", ex);
-    }
+  public Logger getLogger(InjectionPoint injectionPoint) {
+    return LoggerFactory.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
   }
+
+  @Produces
+  @Resource(name = "jdbc/technical-test-webapp-jsp-essential")
+  private DataSource dataSource;
 }

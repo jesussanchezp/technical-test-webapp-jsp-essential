@@ -79,3 +79,11 @@ Expression Language: https://jakarta.ee/specifications/expression-language/
 Authentication: https://jakarta.ee/specifications/authentication/
 Authorization: https://jakarta.ee/specifications/authorization/
 Specifications: https://cwiki.apache.org/confluence/display/TOMCAT/Specifications
+
+Standard CDI Scopes:
+
+@RequestScoped: La instancia existe durante la duración de una única solicitud HTTP.
+@SessionScoped: Vinculado a una sesión HTTP; la instancia persiste entre múltiples solicitudes del mismo usuario. (Nota: Esto forma parte de CDI Full y no está disponible en CDI Lite).
+@ApplicationScoped: La instancia se comparte en toda la aplicación y permanece activa hasta que la aplicación se cierra.
+@ConversationScoped: Gestiona el estado a través de una secuencia específica de solicitudes (una "conversación") definida por el desarrollador. (Disponible solo en CDI Full ).
+@Dependent: El ámbito predeterminado. La instancia del bean nunca se comparte y existe únicamente para servir al objeto en el que se inyectó, compartiendo el ciclo de vida de ese objeto

@@ -84,7 +84,7 @@
                                     </table>
                                     <c:if test="${empty taskList}">
                                         <div class="alert alert-primary" role="alert">
-                                            <i class="fa-solid fa-circle-exclamation"></i>&nbsp;No se encontrarón tareas registradas.
+                                            <i class="fa-solid fa-circle-exclamation"></i>&nbsp;No se encontraron tareas registradas.
                                         </div>
                                     </c:if>
                                 </div>
