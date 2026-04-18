@@ -11,6 +11,7 @@
         <div class="container mt-4">
             <div class="text-center mt-5">
                 <h1 class="display-4 text-danger">404</h1>
+                <i class="fa-solid fa-plug-circle-xmark fa-2xl"></i>
                 <p class="lead">La página que buscas no existe.</p>
                 <a href="${pageContext.request.contextPath}/" class="btn btn-primary">
                     <i class="fa-solid fa-rotate-left"></i>&nbsp;Regresar al Inicio

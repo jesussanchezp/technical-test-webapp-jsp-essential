@@ -11,6 +11,7 @@
         <div class="container mt-4">
             <div class="text-center mt-5">
                 <h1 class="display-4 text-danger">500</h1>
+                <i class="fa-regular fa-circle-xmark fa-2xl"></i>
                 <p class="lead">Ha ocurrido un error inesperado, intente más tarde.</p>
                 <div class="alert alert-danger">
                     <strong>Detalle:</strong>&nbsp;${message}

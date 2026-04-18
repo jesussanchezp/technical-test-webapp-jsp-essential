@@ -28,13 +28,13 @@ import javax.sql.DataSource;
 import org.slf4j.Logger;
 
 @ApplicationScoped
-public class InitialScriptExecution {
+public class ApplicationInitialScriptExecution {
 
   private final Logger logger;
   private final DataSource dataSource;
 
   @Inject
-  public InitialScriptExecution(Logger logger, DataSource dataSource) {
+  public ApplicationInitialScriptExecution(Logger logger, DataSource dataSource) {
     this.logger = logger;
     this.dataSource = dataSource;
   }

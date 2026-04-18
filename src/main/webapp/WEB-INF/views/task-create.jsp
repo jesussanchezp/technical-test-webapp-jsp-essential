@@ -23,17 +23,17 @@
                                 <div class="col-sm-12">
                                     <form id="formCreate" class="needs-validation" novalidate method="post" action="${pageContext.request.contextPath}/tasks/create">
                                         <div class="mb-3">
-                                            <label for="formTaskTitle" class="form-label"><strong>Título</strong></label>
+                                            <label for="formTaskTitle" class="form-label"><strong>Título:</strong></label>
                                             <input id="formTaskTitle" name="title" type="text" class="form-control" placeholder="Task 01 - Title" required>
                                             <div class="invalid-feedback">
                                               El título es obligatorio.
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="formTaskDescription" class="form-label"><strong>Descripción</strong></label>
+                                            <label for="formTaskDescription" class="form-label"><strong>Descripción:</strong></label>
                                             <input id="formTaskDescription" name="description" type="text" class="form-control" placeholder="Task 01 - Description" required>
                                             <div class="invalid-feedback">
-                                              La Descripción es obligatoria.
+                                              La descripción es obligatoria.
                                             </div>
                                         </div>
                                         <div class="mb-3 text-center">

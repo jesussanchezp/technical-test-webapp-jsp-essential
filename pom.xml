@@ -265,9 +265,11 @@
                 <directory>${project.basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>/database/**</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.yaml</include>
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
+                    <include>**/*.sql</include>
                 </includes>
             </resource>
         </resources>

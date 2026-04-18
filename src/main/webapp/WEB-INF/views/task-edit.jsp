@@ -24,28 +24,29 @@
                                     <form id="formEdit" class="needs-validation" novalidate method="post" action="${pageContext.request.contextPath}/tasks/edit">
                                         <input type="hidden" name="id" value="${task.id}">
                                         <div class="mb-3">
-                                            <label for="formTaskTitle" class="form-label"><strong>Título</strong></label>
+                                            <label for="formTaskTitle" class="form-label"><strong>Título:</strong></label>
                                             <input id="formTaskTitle" name="title" type="text" class="form-control" placeholder="Task 01 - Title" value="${task.title}" required>
                                             <div class="invalid-feedback">
                                               El título es obligatorio.
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="formTaskDescription" class="form-label"><strong>Descripción</strong></label>
+                                            <label for="formTaskDescription" class="form-label"><strong>Descripción:</strong></label>
                                             <input id="formTaskDescription" name="description" type="text" class="form-control" placeholder="Task 01 - Description" value="${task.description}" required>
                                             <div class="invalid-feedback">
-                                              La Descripción es obligatoria.
+                                              La descripción es obligatoria.
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <select class="form-select" aria-label="formTaskStatus" name="status" required>
-                                              <option selected disabled value="">Seleccione un Estatus</option>
+                                            <label for="formTaskStatus" class="form-label"><strong>Estado:</strong></label>
+                                            <select id="formTaskStatus" name="status" class="form-control form-select" aria-label="formTaskStatus" required>
+                                              <option selected disabled value="">Seleccione un Estado</option>
                                               <option ${task.status == 'PENDING' ? 'selected' : ''} value="PENDING">Pendiente</option>
                                               <option ${task.status == 'IN_PROCESS' ? 'selected' : ''} value="IN_PROCESS">En Proceso</option>
                                               <option ${task.status == 'COMPLETED' ? 'selected' : ''} value="COMPLETED">Completada</option>
                                             </select>
                                             <div class="invalid-feedback">
-                                              Por favor, seleccione un estatus válido.
+                                              Por favor, seleccione un estado válido.
                                             </div>
                                         </div>
                                         <div class="mb-3 text-center">

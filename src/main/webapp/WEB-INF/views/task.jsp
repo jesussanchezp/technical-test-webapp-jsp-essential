@@ -47,22 +47,20 @@
                                                 <tr>
                                                     <td class="text-justify">${task.title}</td>
                                                     <td class="text-justify">${task.description}</td>
-                                                    <td class="text-center">
-                                                        <c:choose>
-                                                            <c:when test="${task.status == 'PENDING'}">
-                                                                Pendiente
-                                                            </c:when>
-                                                            <c:when test="${task.status == 'IN_PROCESS'}">
-                                                                En Proceso
-                                                            </c:when>
-                                                            <c:when test="${task.status == 'COMPLETED'}">
-                                                                Completada
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                Desconocido
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </td>
+                                                     <c:choose>
+                                                        <c:when test="${task.status == 'PENDING'}">
+                                                            <td class="text-center bg-secondary-subtle">Pendiente</td>
+                                                        </c:when>
+                                                        <c:when test="${task.status == 'IN_PROCESS'}">
+                                                            <td class="text-center bg-primary-subtle">En Proceso</td>
+                                                        </c:when>
+                                                        <c:when test="${task.status == 'COMPLETED'}">
+                                                            <td class="text-center bg-success">Completada</td>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <td class="text-center bg-body-secondary">Desconocido</td>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <td class="text-center">${localDateTimeUtil.formatter(task.createdAt, "dd/MM/yyyy HH:mm:ss")}</td>
                                                     <td class="text-center">
                                                         <div class="btn-group mr-2" aria-label="Options">
